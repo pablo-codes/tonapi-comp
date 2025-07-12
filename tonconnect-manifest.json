@@ -1,7 +1,7 @@
 {
-    "url": "http://localhost:3000",
+    "url": "https://pablo-codes.github.io/tonapi-comp",
     "name": "Ton Wallet Dashboard",
-    "iconUrl": "http://localhost:3000/icon-180x180.png",
-    "termsOfUseUrl": "http://localhost:3000/terms",
-    "privacyPolicyUrl": "http://localhost:3000/privacy"
+    "iconUrl": "https://pablo-codes.github.io/tonapi-comp/apple-touch.png",
+    "termsOfUseUrl": "https://pablo-codes.github.io/tonapi-comp/terms",
+    "privacyPolicyUrl": "https://pablo-codes.github.io/tonapi-comp/privacy"
 }
