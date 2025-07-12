@@ -11,7 +11,10 @@ const NFTGallery = ({ nfts, loading }) => {
     if (!nft) return null;
 
     return (
-      <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div
+        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        style={{ marginTop: 0 }}
+      >
         <div className="glass-strong rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
@@ -65,9 +68,9 @@ const NFTGallery = ({ nfts, loading }) => {
                     </div>
                     <div className="text-primary-white font-mono text-sm break-all">
                       {nft.address
-                        ? `${nft.address.slice(0, 8)}...${nft.address.slice(
-                            -8
-                          )}`
+                        ? `${nft.address.toString().slice(0, 8)}...${nft.address
+                            .toString()
+                            .slice(-8)}`
                         : "N/A"}
                     </div>
                   </div>

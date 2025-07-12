@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 window.Buffer = Buffer;
 import { TonApiClient } from '@ton-api/client';
+import { Address } from 'ton';
 
 const tonApi = new TonApiClient({
   baseUrl: 'https://tonapi.io',
@@ -32,12 +33,13 @@ export const tonApiService = {
       });
 
       return events.events.map(event => ({
-        hash: event.event_id,
+        hash: event.eventId,
+        incoming: this.getincoming(event),
         timestamp: event.timestamp,
-        type: this.getTransactionType(event),
-        amount: this.getTransactionAmount(event),
-        fee: event.fee?.total || 0,
-        success: event.is_scam === false,
+        type: event.actions[0].type,
+        amount: event.actions[0].simplePreview.value,
+        fee: this.getTxFee(event.extra),
+        success: event.actions[0].status,
         description: this.getTransactionDescription(event)
       }));
     } catch (error) {
@@ -74,11 +76,11 @@ export const tonApiService = {
         offset: 0
       });
 
-      return nfts.nft_items.map(nft => ({
+      return nfts.nftItems.map(nft => ({
         address: nft.address,
         name: nft.metadata?.name || 'Unnamed NFT',
         description: nft.metadata?.description || '',
-        image: nft.metadata?.image || nft.previews?.[0]?.url,
+        image: nft.previews?.[0]?.url,
         collection: {
           name: nft.collection?.name || 'Unknown Collection',
           address: nft.collection?.address
@@ -102,6 +104,30 @@ export const tonApiService = {
     }
     return 'unknown';
   },
+  getincoming(event) {
+    if (event.actions?.[0]) {
+      const action = event.actions?.[0];
+
+      return action[action.type].recipient.address.toRawString() == event.account.address.toRawString() ? true : false;
+    }
+  },
+
+
+
+  getTxFee(extra) {
+    if (extra == null) return null;
+    let fee = Number(extra);
+    if (fee > 0) {
+      fee = -fee
+    }
+    // Convert to TON
+    let feeTon = fee / 1e9;
+    // Only convert positive values to negative
+
+    return feeTon;
+  },
+
+
 
   getTransactionAmount(event) {
     if (event.actions?.[0]?.TonTransfer) {
@@ -137,8 +163,16 @@ export const tonApiService = {
   },
 
   // Validate TON address
-  isValidTonAddress(address) {
-    return /^[0-9a-fA-F]{64}$/.test(address.replace(/[:-]/g, '')) ||
-      /^[a-zA-Z0-9_-]{48}$/.test(address);
+  isValidTonAddress(addresse) {
+    try {
+      const address = Address.parse(addresse);
+      // You can also perform additional checks, e.g., for bounceability or testnet/mainnet
+      // console.log("Is bounceable:", address.isBounceable);
+      // console.log("Is testnet:", address.isTestOnly);
+      return true;
+    } catch (e) {
+      console.error("Invalid TON base64 address:", e.message);
+      return false;
+    }
   }
 };

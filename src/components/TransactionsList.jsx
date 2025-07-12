@@ -12,33 +12,18 @@ const TransactionsList = ({ transactions, loading }) => {
   const [filter, setFilter] = useState("all");
   const [showAll, setShowAll] = useState(false);
 
-  const getTransactionIcon = (type, amount) => {
-    const isOutgoing = amount < 0;
-
-    if (type === "jetton") {
-      return isOutgoing ? (
-        <ArrowUpRight className="w-4 h-4 text-red-400" />
-      ) : (
-        <ArrowDownLeft className="w-4 h-4 text-green-400" />
-      );
-    }
+  const getTransactionIcon = (type) => {
+    const isOutgoing = type;
 
     return isOutgoing ? (
-      <ArrowUpRight className="w-4 h-4 text-red-400" />
-    ) : (
       <ArrowDownLeft className="w-4 h-4 text-green-400" />
+    ) : (
+      <ArrowUpRight className="w-4 h-4 text-red-400" />
     );
   };
 
-  const getTransactionColor = (type, amount) => {
-    const isOutgoing = amount < 0;
-    return isOutgoing ? "text-red-400" : "text-green-400";
-  };
-
-  const formatAmount = (amount, type) => {
-    if (type === "jetton") return "Token Transfer";
-    const tonAmount = Math.abs(amount) / 1e9;
-    return `${tonAmount.toFixed(4)} TON`;
+  const getTransactionColor = (type) => {
+    return type ? "text-green-400" : "text-red-400";
   };
 
   const formatTimestamp = (timestamp) => {
@@ -46,13 +31,14 @@ const TransactionsList = ({ transactions, loading }) => {
   };
 
   const formatHash = (hash) => {
+    if (!hash || typeof hash !== "string") return "Invalid Hash";
     return `${hash.slice(0, 8)}...${hash.slice(-8)}`;
   };
 
   const filteredTransactions = transactions.filter((tx) => {
     if (filter === "all") return true;
-    if (filter === "incoming") return tx.amount >= 0;
-    if (filter === "outgoing") return tx.amount < 0;
+    if (filter === "incoming") return tx.incoming;
+    if (filter === "outgoing") return tx.incoming == false;
     if (filter === "jetton") return tx.type === "jetton";
     return true;
   });
@@ -106,7 +92,7 @@ const TransactionsList = ({ transactions, loading }) => {
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="bg-primary-white/10 border border-primary-white/20 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary-blue text-primary-white backdrop-blur-sm"
+            className="bg-primary-white/10 border border-primary-white/20 rounded-lg px-3 py-1 text-sm text-black focus:outline-none focus:ring-2 focus:ring-primary-blue text-primary-white backdrop-blur-sm"
           >
             <option value="all">All</option>
             <option value="incoming">Incoming</option>
@@ -125,12 +111,12 @@ const TransactionsList = ({ transactions, loading }) => {
         <div className="space-y-3">
           {displayedTransactions.map((tx, index) => (
             <div
-              key={tx.hash || index}
+              key={tx.hash}
               className="flex items-center gap-4 p-4 bg-primary-white/5 hover:bg-primary-white/10 rounded-xl transition-colors group"
             >
               <div className="flex-shrink-0">
                 <div className="w-10 h-10 bg-primary-white/10 rounded-lg flex items-center justify-center">
-                  {getTransactionIcon(tx.type, tx.amount)}
+                  {getTransactionIcon(tx.incoming)}
                 </div>
               </div>
 
@@ -154,19 +140,15 @@ const TransactionsList = ({ transactions, loading }) => {
 
               <div className="text-right flex-shrink-0">
                 <div
-                  className={`font-medium ${getTransactionColor(
-                    tx.type,
-                    tx.amount
-                  )}`}
+                  className={`font-medium ${getTransactionColor(tx.incoming)}`}
                 >
-                  {tx.amount < 0 ? "-" : "+"}
-                  {formatAmount(tx.amount, tx.type)}
+                  {tx.incoming ? "+" : "-"}
+                  {tx.amount}
                 </div>
-                {tx.fee > 0 && (
-                  <div className="text-sm text-primary-white/70">
-                    Fee: {(tx.fee / 1e9).toFixed(6)} TON
-                  </div>
-                )}
+
+                <div className="text-sm text-primary-white/70">
+                  Fee: {Number(tx.fee)} TON
+                </div>
               </div>
 
               <a

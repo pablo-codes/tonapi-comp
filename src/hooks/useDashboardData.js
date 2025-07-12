@@ -12,9 +12,9 @@ export const useDashboardData = (address) => {
   const [error, setError] = useState(null);
 
   const fetchDashboardData = useCallback(async (walletAddress) => {
-    walletAddress = Address.parse(walletAddress);
+
     console.log('Fetching dashboard data for:', walletAddress);
-    if (!walletAddress || !Address.isAddress(walletAddress)) {
+    if (!walletAddress || !tonApiService.isValidTonAddress(walletAddress)) {
       setError('Invalid wallet address');
       return;
     }
@@ -23,7 +23,7 @@ export const useDashboardData = (address) => {
 
     setLoading(true);
     setError(null);
-
+    walletAddress = Address.parse(walletAddress);
     try {
       // Validate address format
 
