@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "@ton-api/client": "^0.4.0",
     "@tonconnect/ui-react": "^2.0.0",
     "lucide-react": "^0.488.0",
