@@ -12,24 +12,26 @@ export const useDashboardData = (address) => {
   const [error, setError] = useState(null);
 
   const fetchDashboardData = useCallback(async (walletAddress) => {
-    if (!walletAddress || !tonApiService.isValidTonAddress(walletAddress)) {
+    walletAddress = Address.parse(walletAddress);
+    console.log('Fetching dashboard data for:', walletAddress);
+    if (!walletAddress || !Address.isAddress(walletAddress)) {
       setError('Invalid wallet address');
       return;
     }
-    walletAddress = String(walletAddress).trim()
+
     console.log('Fetching dashboard data for:', String(walletAddress));
 
     setLoading(true);
     setError(null);
 
     try {
-      const address = Address.parse(walletAddress); // Validate address format
-      walletAddress = String(walletAddress).trim()
+      // Validate address format
+
       const [accountInfo, transactions, jettons, nfts] = await Promise.allSettled([
-        tonApiService.getAccountInfo(address),
-        tonApiService.getAccountTransactions(address),
-        tonApiService.getAccountJettons(address),
-        tonApiService.getAccountNFTs(address)
+        tonApiService.getAccountInfo(walletAddress),
+        tonApiService.getAccountTransactions(walletAddress),
+        tonApiService.getAccountJettons(walletAddress),
+        tonApiService.getAccountNFTs(walletAddress)
       ]);
 
       setData({
