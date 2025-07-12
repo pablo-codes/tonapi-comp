@@ -42,7 +42,10 @@ const WalletConnection = ({ onAddressChange, currentAddress }) => {
             <Search className="w-5 h-5 text-primary-blue" />
             Enter Wallet Address
           </h3>
-          <form onSubmit={handleManualSubmit} className="flex gap-3">
+          <form
+            onSubmit={handleManualSubmit}
+            className="flex flex-col gap-3 sm:flex-row"
+          >
             <input
               type="text"
               value={manualAddress}
