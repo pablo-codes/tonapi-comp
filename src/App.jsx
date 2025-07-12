@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <TonConnectUIProvider manifestUrl={manifestUrl}>
+    <TonConnectUIProvider manifestUrl="/tonconnect-manifest.json">
       <div className="min-h-screen bg-gradient-to-br from-primary-deep-blue via-primary-gray to-primary-deep-blue font-inter-display">
         {/* Header */}
         <header className="border-b border-primary-white/10 bg-gradient-to-br from-primary-deep-blue via-primary-gray to-primary-deep-blue font-inter-display backdrop-blur-sm glass-strong">

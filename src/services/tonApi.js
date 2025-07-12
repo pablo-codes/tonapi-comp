@@ -4,7 +4,7 @@ import { TonApiClient } from '@ton-api/client';
 
 const tonApi = new TonApiClient({
   baseUrl: 'https://tonapi.io',
-  apiKey: undefined // Using public API
+  apiKey: process.env.REACT_APP_TON_API_KEY
 });
 
 export const tonApiService = {
