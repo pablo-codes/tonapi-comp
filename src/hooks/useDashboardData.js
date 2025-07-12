@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { tonApiService } from '../services/tonApi';
-
+import { Address } from 'ton';
 export const useDashboardData = (address) => {
   const [data, setData] = useState({
     balance: null,
@@ -16,16 +16,20 @@ export const useDashboardData = (address) => {
       setError('Invalid wallet address');
       return;
     }
+    walletAddress = String(walletAddress).trim()
+    console.log('Fetching dashboard data for:', String(walletAddress));
 
     setLoading(true);
     setError(null);
 
     try {
+      const address = Address.parse(walletAddress); // Validate address format
+      walletAddress = String(walletAddress).trim()
       const [accountInfo, transactions, jettons, nfts] = await Promise.allSettled([
-        tonApiService.getAccountInfo(walletAddress),
-        tonApiService.getAccountTransactions(walletAddress),
-        tonApiService.getAccountJettons(walletAddress),
-        tonApiService.getAccountNFTs(walletAddress)
+        tonApiService.getAccountInfo(address),
+        tonApiService.getAccountTransactions(address),
+        tonApiService.getAccountJettons(address),
+        tonApiService.getAccountNFTs(address)
       ]);
 
       setData({
