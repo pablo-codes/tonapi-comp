@@ -1,0 +1,7 @@
+{
+    "url": "http://localhost:3000",
+    "name": "Ton Wallet Dashboard",
+    "iconUrl": "http://localhost:3000/icon-180x180.png",
+    "termsOfUseUrl": "http://localhost:3000/terms",
+    "privacyPolicyUrl": "http://localhost:3000/privacy"
+}
