@@ -134,7 +134,9 @@ const TransactionsList = ({ transactions, loading }) => {
                 <div className="flex items-center gap-2 text-sm text-primary-white/70">
                   <span>{formatTimestamp(tx.timestamp)}</span>
                   <span>•</span>
-                  <span className="font-mono">{formatHash(tx.hash)}</span>
+                  <span className="font-mono truncate">
+                    {formatHash(tx.hash)}
+                  </span>
                 </div>
               </div>
 

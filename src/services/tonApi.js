@@ -38,7 +38,7 @@ export const tonApiService = {
         timestamp: event.timestamp,
         type: event.actions[0].type,
         amount: event.actions[0].simplePreview.value,
-        fee: this.getTxFee(event.extra),
+        fee: this.formatTonAmount(event.extra),
         success: event.actions[0].status,
         description: this.getTransactionDescription(event)
       }));

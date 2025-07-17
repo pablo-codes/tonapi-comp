@@ -3,7 +3,7 @@ name: 🛸Deploy to Ton api comp
 on:
   push:
     branches:
-      - main # ← change this if you deploy from a different branch
+      - main
 
 permissions:
   contents: write
@@ -29,7 +29,6 @@ jobs:
 
       - name: 🏗️ Build with Vite
         run: npm run build
-        # Vite will emit to the `dist/` folder by default
 
       - name: 🚀 Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

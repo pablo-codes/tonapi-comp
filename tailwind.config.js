@@ -14,7 +14,7 @@ export default {
           gray: '#1D2633',
           'deep-blue': '#10161F'
         },
-        // TON brand colors (keeping for compatibility)
+
         ton: {
           50: '#f0f9ff',
           100: '#e0f2fe',
