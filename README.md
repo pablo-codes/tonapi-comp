@@ -1,112 +1,97 @@
-# TON Wallet Dashboard 🌐
+# TON Wallet Dashboard 📈
 
-A modern, real-time blockchain analytics dashboard for The Open Network (TON). This application provides a comprehensive overview of any TON wallet address, displaying current balance, transaction history, jetton token holdings, and NFT collections. Built with React and integrated with TON API, it offers a seamless and intuitive user experience for exploring on-chain data.
+Dive into the TON blockchain with this intuitive dashboard, providing real-time insights into wallet balances, transactions, jetton assets, and NFT collections. Built with modern React and a sleek interface, it's your go-to tool for exploring TON blockchain data. ✨
 
-## 🚀 Getting Started
+## Installation
 
-Follow these steps to get a local copy of the project up and running on your machine.
+Getting the TON Wallet Dashboard up and running on your local machine is straightforward. Follow these steps:
 
-### Prerequisites
+- **Clone the Repository**:
+  Begin by cloning the project repository to your local system using Git:
 
-Before you begin, ensure you have the following installed:
+  ```bash
+  git clone https://github.com/pablo-codes/tonapi-comp.git
+  ```
 
-- Node.js (v18 or higher recommended)
-- npm (comes with Node.js)
-- Git
+- **Navigate to Project Directory**:
+  Change into the newly cloned project directory:
 
-### Installation
+  ```bash
+  cd tonapi-comp
+  ```
 
-1.  **Clone the Repository**:
+- **Install Dependencies**:
+  Install all required project dependencies using npm:
 
-    ```bash
-    git clone https://github.com/pablo-codes/tonapi-comp.git
-    cd tonapi-comp
-    ```
+  ```bash
+  npm install
+  ```
 
-2.  **Install Dependencies**:
+- **Run the Development Server**:
+  Start the development server. This will compile the project and open it in your default web browser (usually at `http://localhost:3000`):
+  ```bash
+  npm run dev
+  ```
 
-    ```bash
-    npm install
-    ```
+## Usage
 
-3.  **Set up Environment Variables**:
-    Create a `.env` file in the root directory of the project. This project uses `process.env.REACT_APP_TON_API_KEY` for accessing the TON API.
-    You will need to obtain an API key from [TON API](https://tonapi.io/).
-
-    ```
-    REACT_APP_TON_API_KEY=your_tonapi_key_here
-    ```
-
-    Replace `your_tonapi_key_here` with your actual TON API key.
-
-4.  **Run the Development Server**:
-    ```bash
-    npm run dev
-    ```
-    The application will typically open in your browser at `http://localhost:3000`.
-
-## 💡 Usage
-
-Once the application is running, you can interact with it in two primary ways:
+Once the application is up and running, you can interact with the TON Wallet Dashboard in two primary ways:
 
 1.  **Connect Your Wallet**:
-    Click the "Connect TON Wallet" button. This uses `tonconnect/ui-react` to securely connect your preferred TON wallet (e.g., Tonkeeper, MyTonWallet). Once connected, your wallet's address will be automatically loaded, and its dashboard data will be displayed.
+    Click the "Connect TON Wallet" button. This will prompt you to connect a compatible TON wallet via the TON Connect protocol. Once your wallet is successfully linked, its address will automatically populate, and the dashboard will begin displaying your real-time balance, transactions, and assets.
 
-2.  **Enter a Wallet Address Manually**:
-    In the "Enter Wallet Address" input field, you can paste any valid TON wallet address. Press "Search" to fetch and display the blockchain data for that specific address. This is useful for exploring public addresses without connecting your own wallet.
+2.  **Enter a Manual Address**:
+    If you'd like to explore data for any TON address without connecting your own wallet, simply paste the desired address into the provided input field. After entering the address, click "Search". The dashboard will then fetch and display the corresponding blockchain data for that address.
 
-Upon successful input or connection, the dashboard will populate with:
+3.  **Explore Data**:
+    Once an address is loaded, you can navigate through the various sections of the dashboard. View your current TON balance, browse a comprehensive list of transactions, discover your held Jetton tokens, and explore your unique NFT collection. Remember to use the refresh button on the balance card to ensure you're always viewing the latest data!
 
-- **Real-time Balance**: Your current TON balance and account status.
-- **Recent Transactions**: A list of the latest transactions, including incoming/outgoing transfers, fees, and timestamps.
-- **Jetton Assets**: An overview of all fungible tokens (Jettons) held by the wallet, with their balances and USD values where available.
-- **NFT Collection**: A gallery of non-fungible tokens (NFTs) owned by the address, with interactive previews for details.
+## Features
 
-You can refresh the data at any time by clicking the refresh icon on the Balance Card.
+This dashboard comes packed with features designed to give you a comprehensive view of any TON wallet:
 
-## ✨ Features
+- **Real-time TON Balance & Account Status**: Get instant updates on your TON holdings, including the precise balance and the current status of the wallet (active, uninitialized, or frozen).
+- **Comprehensive Transaction History**: Dive deep into detailed logs of all incoming and outgoing transactions. Each entry provides crucial information like timestamps, transaction type, and associated fees.
+- **Jetton Token Management**: Easily discover and track all fungible TON Jetton tokens associated with an address, complete with token names, symbols, current balances, and USD valuation where available.
+- **NFT Collection Gallery**: Showcase and browse your unique NFT assets in an organized gallery. Each NFT view offers details and a direct link to TONScan for further exploration.
+- **Seamless Wallet Integration**: Connect effortlessly with your preferred TON wallet using the secure TON Connect protocol, providing a personalized and interactive experience.
+- **Manual Address Lookup**: Explore the blockchain data of any public TON address without needing to connect your own wallet, offering flexibility for research and analysis.
+- **Modern & Responsive UI**: Crafted with Tailwind CSS, the dashboard offers a sleek, intuitive, and fully responsive user interface, ensuring a smooth experience across desktops, tablets, and mobile devices.
 
-This dashboard comes packed with features designed to give you a comprehensive view of TON blockchain data:
+## Technologies Used
 
-- **Wallet Connectivity**: Seamlessly connect your TON wallet using `@tonconnect/ui-react` for secure and direct data access.
-- **Manual Address Lookup**: Explore any TON wallet address by simply pasting it into the input field, no connection required.
-- **Real-time Balance Overview**: Get an instant update on your TON balance and account status (active, uninitialized, frozen).
-- **Detailed Transaction History**: View a sortable list of recent transactions with clear indicators for incoming/outgoing transfers, amounts, fees, and links to TONScan.
-- **Jetton Assets Display**: Keep track of all your fungible tokens (Jettons) with their balances, symbols, and estimated USD values.
-- **NFT Gallery**: Browse your NFT collections with image previews and access detailed information for each token.
-- **Responsive Design**: A sleek and modern user interface built with Tailwind CSS, optimized for various screen sizes.
-- **Data Fetching with Loading States**: Provides clear loading indicators and error handling for a smooth user experience.
+The TON Wallet Dashboard is built using a modern and robust stack, leveraging the power of React for the frontend and interacting with the TON blockchain via specialized APIs.
 
-## 🛠️ Technologies Used
+| Technology               | Description                                                                                  | Link                                                                |
+| :----------------------- | :------------------------------------------------------------------------------------------- | :------------------------------------------------------------------ |
+| **React**                | A declarative, component-based JavaScript library for building user interfaces.              | [React.dev](https://react.dev/)                                     |
+| **Vite**                 | A next-generation frontend tooling that provides an extremely fast development experience.   | [Vitejs.dev](https://vitejs.dev/)                                   |
+| **Tailwind CSS**         | A utility-first CSS framework for rapidly building custom designs without leaving your HTML. | [Tailwindcss.com](https://tailwindcss.com/)                         |
+| **TonAPI Client**        | The official client library for interacting with the TON Blockchain API.                     | [TonAPI.io](https://tonapi.io/)                                     |
+| **@tonconnect/ui-react** | A React integration for TON Connect, enabling seamless wallet connections.                   | [TonConnect.io](https://tonconnect.io/)                             |
+| **Lucide React**         | A collection of beautiful and customizable open-source icons for React projects.             | [Lucide.dev](https://lucide.dev/)                                   |
+| **TON (JS SDK)**         | The core JavaScript SDK for interacting with the TON blockchain.                             | [Docs.ton.org](https://docs.ton.org/develop/dapp/ton-core/overview) |
 
-The project leverages a powerful stack to deliver a robust and responsive experience:
+## License
 
-| Technology               | Description                                         | Link                                                                                                           |
-| :----------------------- | :-------------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
-| **React**                | A JavaScript library for building user interfaces.  | [react.dev](https://react.dev/)                                                                                |
-| **Vite**                 | Next-generation frontend tooling.                   | [vitejs.dev](https://vitejs.dev/)                                                                              |
-| **Tailwind CSS**         | A utility-first CSS framework for rapid styling.    | [tailwindcss.com](https://tailwindcss.com/)                                                                    |
-| **@ton-api/client**      | Official client for interacting with TON API.       | [tonapi.io](https://tonapi.io/)                                                                                |
-| **@tonconnect/ui-react** | React hooks for TON Connect UI.                     | [tonconnect.github.io](https://tonconnect.github.io/)                                                          |
-| **Lucide React**         | Beautiful and customizable open-source icons.       | [lucide.dev](https://lucide.dev/)                                                                              |
-| **TON (JS SDK)**         | JavaScript SDK for interacting with TON blockchain. | [ton.org/docs/develop/dapps/blockchain-interaction](https://ton.org/docs/develop/dapps/blockchain-interaction) |
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 📜 License
+## Author
 
-This project is open-source and available under an unspecified license. Feel free to use and modify the code.
+**Okpani Francis C. (pablo-codes)**
 
-## ✍️ Author
+A passionate developer with a keen interest in blockchain technologies and building intuitive web applications.
 
-This project was developed by:
-
-**pablo-codes**
-
-- GitHub: [@pablo-codes](https://github.com/pablo-codes)
-- YouTube: [@Fwpoder](https://www.youtube.com/@Fwpoder)
+- **GitHub**: [@pablo-codes](https://github.com/pablo-codes)
+- **YouTube**: [@Fwpoder](https://www.youtube.com/@Fwpoder)
 
 ---
 
-[![Built with React](https://img.shields.io/badge/Built%20with-React-61DAFB?logo=react&logoColor=white&style=for-the-badge)](https://react.dev/)
-[![Styled with Tailwind CSS](https://img.shields.io/badge/Styled%20with-TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white&style=for-the-badge)](https://tailwindcss.com/)
-[![Powered by Vite](https://img.shields.io/badge/Powered%20by-Vite-646CFF?logo=vite&logoColor=white&style=for-the-badge)](https://vitejs.dev/)
-[![TON API Integration](https://img.shields.io/badge/Integration-TON%20API-0098EA?logo=ton&logoColor=white&style=for-the-badge)](https://tonapi.io/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TON](https://img.shields.io/badge/TON-0098EA?style=for-the-badge&logo=ton&logoColor=white)](https://ton.org/)
+
+[![GitHub stars](https://img.shields.io/github/stars/pablo-codes/tonapi-comp?style=social)](https://github.com/pablo-codes/tonapi-comp/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/pablo-codes/tonapi-comp?style=social)](https://github.com/pablo-codes/tonapi-comp/network/members)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
