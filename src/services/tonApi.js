@@ -94,16 +94,7 @@ export const tonApiService = {
   },
 
   // Helper methods
-  getTransactionType(event) {
-    if (event.actions?.[0]) {
-      const action = event.actions[0];
-      if (action.type === 'TonTransfer') return 'transfer';
-      if (action.type === 'JettonTransfer') return 'jetton';
-      if (action.type === 'NftItemTransfer') return 'nft';
-      if (action.type === 'ContractDeploy') return 'deploy';
-    }
-    return 'unknown';
-  },
+
   getincoming(event) {
     if (event.actions?.[0]) {
       const action = event.actions?.[0];
@@ -111,22 +102,6 @@ export const tonApiService = {
       return action[action.type].recipient.address.toRawString() == event.account.address.toRawString() ? true : false;
     }
   },
-
-
-
-  getTxFee(extra) {
-    if (extra == null) return null;
-    let fee = Number(extra);
-    if (fee > 0) {
-      fee = -fee
-    }
-    // Convert to TON
-    let feeTon = fee / 1e9;
-    // Only convert positive values to negative
-
-    return feeTon;
-  },
-
 
 
   getTransactionAmount(event) {
@@ -166,9 +141,7 @@ export const tonApiService = {
   isValidTonAddress(addresse) {
     try {
       const address = Address.parse(addresse);
-      // You can also perform additional checks, e.g., for bounceability or testnet/mainnet
-      // console.log("Is bounceable:", address.isBounceable);
-      // console.log("Is testnet:", address.isTestOnly);
+
       return true;
     } catch (e) {
       console.error("Invalid TON base64 address:", e.message);

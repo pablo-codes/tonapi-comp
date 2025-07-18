@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
-import { Activity, Github, Twitter } from "lucide-react";
+import { Activity, Github, Twitter, Youtube } from "lucide-react";
 import WalletConnection from "./components/WalletConnection";
 import Dashboard from "./components/Dashboard";
 import { useDashboardData } from "./hooks/useDashboardData";
 import logo from "./assets/logo.png";
-
-const manifestUrl =
-  "https://raw.githubusercontent.com/ton-community/tutorials/main/03-client/test/public/tonconnect-manifest.json";
 
 function App() {
   const [currentAddress, setCurrentAddress] = useState("");
@@ -46,7 +43,7 @@ function App() {
 
               <div className="flex items-center gap-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/pablo-codes/tonapi-comp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 hover:bg-primary-white/10 rounded-lg transition-colors"
@@ -54,12 +51,12 @@ function App() {
                   <Github className="w-5 h-5 text-primary-white/70 hover:text-primary-white" />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://www.youtube.com/@Fwpoder"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 hover:bg-primary-white/10 rounded-lg transition-colors"
                 >
-                  <Twitter className="w-5 h-5 text-primary-white/70 hover:text-primary-white" />
+                  <Youtube className="w-5 h-5 text-primary-white/70 hover:text-primary-white" />
                 </a>
               </div>
             </div>
