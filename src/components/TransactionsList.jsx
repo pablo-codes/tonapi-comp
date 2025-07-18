@@ -94,10 +94,18 @@ const TransactionsList = ({ transactions, loading }) => {
             onChange={(e) => setFilter(e.target.value)}
             className="bg-primary-white/10 border border-primary-white/20 rounded-lg px-3 py-1 text-sm text-black focus:outline-none focus:ring-2 focus:ring-primary-blue text-primary-white backdrop-blur-sm"
           >
-            <option value="all">All</option>
-            <option value="incoming">Incoming</option>
-            <option value="outgoing">Outgoing</option>
-            <option value="jetton">Tokens</option>
+            <option className="text-black" value="all">
+              All
+            </option>
+            <option className="text-black" value="incoming">
+              Incoming
+            </option>
+            <option className="text-black" value="outgoing">
+              Outgoing
+            </option>
+            <option className="text-black" value="jetton">
+              Tokens
+            </option>
           </select>
         </div>
       </div>
