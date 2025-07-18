@@ -28,7 +28,7 @@ Getting the TON Wallet Dashboard up and running on your local machine is straigh
   ```
 
 - **Run the Development Server**:
-  Start the development server. This will compile the project and open it in your default web browser (usually at `http://localhost:3000`):
+  Start the development server. This will compile the project and open it in your default web browser ( `http://localhost:3000`):
   ```bash
   npm run dev
   ```
